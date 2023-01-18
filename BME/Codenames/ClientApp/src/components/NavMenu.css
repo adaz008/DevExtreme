@@ -1,0 +1,27 @@
+﻿ a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+} 
+
+.fejlec{
+  background: linear-gradient(90deg, rgba(255,0,0,0.9471989479385504) 0%, rgba(162,57,101,1) 46%, rgba(12,89,251,1) 88%);
+}
+
+.feher-szoveg{
+  color: #fff !important;
+  font-size: 20px;
+}
