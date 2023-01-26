@@ -17,5 +17,9 @@ export const navigation = [
         path: '/tasks'
       }
     ]
+  },
+  {
+    text: 'Data',
+    icon: 'globe'
   }
 ];

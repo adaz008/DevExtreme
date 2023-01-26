@@ -8,9 +8,7 @@ namespace my_new_app.Data
     {
         public DbSet<WeatherForecast> weatherForecasts { get; set; }
 
-        public WeatherDbContext(DbContextOptions<WeatherDbContext> options)
-        : base(options)
-        { }
+        public WeatherDbContext(DbContextOptions<WeatherDbContext> options): base(options){ }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -36,6 +36,7 @@ public class WeatherForecastController : ControllerBase
 
         if (q == null)
             return (IEnumerable<WeatherForecast>)NotFound();
+
         var coldests = new List<WeatherForecast>();
         coldests.Add(q[0]);
         for (int i = 1; i < q.Count; i++)
