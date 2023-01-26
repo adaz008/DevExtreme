@@ -1,4 +1,4 @@
-﻿using DevExtreme.AspNet.Data;
+using DevExtreme.AspNet.Data;
 using DevExtreme.AspNet.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -25,10 +25,8 @@ namespace my_new_app.Controllers
         }
 
         [HttpGet]
-        [Route("all")]
-        public async Task<IActionResult> Get(DataSourceLoadOptions loadOptions) {
+        public async Task<IActionResult> All(DataSourceLoadOptions loadOptions) {
             var weatherforecasts = _context.weatherForecasts.Select(i => new {
-                i.Id,
                 i.City,
                 i.Date,
                 i.TemperatureC,
