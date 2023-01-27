@@ -1,0 +1,44 @@
+<h2>Data</h2>
+
+<dx-button text="All" (click)="getAll()"> </dx-button>
+<dx-button text="Hottest"> </dx-button>
+<dx-button text="Coldest"> </dx-button>
+
+<dx-data-grid class="dx-card wide-card"
+              [dataSource]="dataSource"
+              [showBorders]="false"
+              [focusedRowEnabled]="true"
+              [focusedRowIndex]="0"
+              [columnAutoWidth]="true"
+              [columnHidingEnabled]="true">
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+    <dxi-column dataField="City"
+                dataType="string"
+                [visible]="true">
+    </dxi-column>
+
+    <dxi-column dataField="Date"
+                dataType="string"
+                [visible]="true">
+    </dxi-column>
+
+    <dxi-column dataField="TemperatureC"
+                dataType="int"
+                [visible]="true">
+    </dxi-column>
+
+    <dxi-column dataField="TemperatureF"
+                dataType="int"
+                [visible]="true">
+    </dxi-column>
+
+    <dxi-column dataField="Summary"
+                dataType="string"
+                [visible]="true">
+    </dxi-column>
+
+</dx-data-grid>

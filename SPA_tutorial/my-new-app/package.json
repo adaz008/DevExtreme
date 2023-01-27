@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "devextreme": "22.2.3",
+    "devextreme-angular": "22.2.3"
+  }
+}
