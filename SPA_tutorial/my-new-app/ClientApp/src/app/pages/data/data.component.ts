@@ -12,30 +12,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 export class DataComponent {
   dataSource: any;
 
-  //constructor() {
-  //  this.dataSource = [
-  //    {
-  //      "City": "Budapest",
-  //      "Date": "2023-01-23",
-  //      "TemperatureC": 23,
-  //      "TemperatureF": 57,
-  //      "Summary": "Mild"
-  //    },
-  //    {
-  //      "City": "Venice",
-  //      "Date": "2023-01-22",
-  //      "TemperatureC": 13,
-  //      "TemperatureF": 37,
-  //      "Summary": "Cold"
-  //    }
-  //  ]
-  //}
-
-  constructor(private http: HttpClient, private service: Service) {
-    this.getAll();
-  }
-
-  getAll() {
-    this.dataSource = this.service.getAll();
+  constructor(private service: Service) {
+    this.dataSource = this.service.getWeatherDatasource();
   }
 }

@@ -33,7 +33,7 @@ namespace my_new_app.Controllers
               i.TemperatureC,
               i.TemperatureF,
               i.Summary
-            }); ;
+            }); 
 
             // If underlying data is a large SQL table, specify PrimaryKey and PaginateViaPrimaryKey.
             // This can make SQL execution plans more efficient.

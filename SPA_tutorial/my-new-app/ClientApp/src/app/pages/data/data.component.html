@@ -1,8 +1,8 @@
 <h2>Data</h2>
 
-<dx-button text="All" (click)="getAll()"> </dx-button>
-<dx-button text="Hottest"> </dx-button>
-<dx-button text="Coldest"> </dx-button>
+<dx-button class="btn" text="All"> </dx-button>
+<dx-button class="btn" text="Hottest"> </dx-button>
+<dx-button class="btn" text="Coldest"> </dx-button>
 
 <dx-data-grid class="dx-card wide-card"
               [dataSource]="dataSource"
@@ -10,11 +10,23 @@
               [focusedRowEnabled]="true"
               [focusedRowIndex]="0"
               [columnAutoWidth]="true"
-              [columnHidingEnabled]="true">
+              [columnHidingEnabled]="true"
+              [remoteOperations]="true">
 
   <dxo-paging [pageSize]="10"></dxo-paging>
   <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
   <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-editing mode="popup"
+               [allowUpdating]="true"
+               [allowAdding]="true"
+               [allowDeleting]="true">
+    </dxo-editing>
+
+    <dxo-popup title="Employee Info"
+               [showTitle]="true"
+               [width]="700"
+               [height]="525">
+    </dxo-popup>
 
     <dxi-column dataField="City"
                 dataType="string"
