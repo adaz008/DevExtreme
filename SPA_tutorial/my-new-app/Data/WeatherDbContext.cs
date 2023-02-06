@@ -7,6 +7,7 @@ namespace my_new_app.Data
     public partial class WeatherDbContext : DbContext
     {
         public DbSet<WeatherForecast> weatherForecasts { get; set; }
+        public DbSet<Notification> notifications { get; set; }
 
         public WeatherDbContext(DbContextOptions<WeatherDbContext> options): base(options){ }
 

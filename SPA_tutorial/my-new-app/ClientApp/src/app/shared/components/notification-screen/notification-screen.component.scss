@@ -1,0 +1,70 @@
+@import "../../../../themes/generated/variables.base.scss";
+@import "../../../../dx-styles.scss";
+
+
+.tables {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.columnl {
+  position: relative;
+  width: 32%;
+  margin-left: 4px;
+  margin-top: 4px;
+  border: 3px solid grey;
+  background-color: #3E3E3E;
+}
+
+.columnr {
+  position: relative;
+  width: 68%;
+  margin-right: 2px;
+  margin-top: 4px;
+  border: 3px solid grey;
+  background-color: white;
+}
+
+.content-block {
+  margin-left: 4px;
+  margin-right: 2px;
+  margin-top: 4px;
+}
+
+.message{
+    color: black;
+    margin: 20px;
+}
+
+.header-footer {
+  text-align: center;
+  color: #BAB4B2;
+  font-size: 12px;
+}
+.subject {
+  text-align: left;
+  font-weight: bold;
+  font-size: 24px;
+}
+.body {
+  text-align: justify;
+  font-size: 16px;
+  margin-top: 30px;
+  height: 550px;
+  align-content: stretch;
+  color: black;
+  width: 700px;
+}
+.emailButtonRed .dx-icon {
+  color: red;
+}
+.emailButtonWhite .dx-icon {
+  color: white;
+}
+.mainenanceInfo {
+  margin-right:5rem;
+  max-width: 500px;
+  color: #CC444B;
+  font-weight:bold;
+}

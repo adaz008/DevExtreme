@@ -1,0 +1,72 @@
+<dx-popup [height]="800"
+          [width]="1200"
+          [showTitle]="true"
+          [title]="'Notifications'"
+          [showCloseButton]="true"
+          [dragEnabled]="true"
+          [resizeEnabled]="true"
+          [closeOnOutsideClick]="true"
+          [(visible)]="visible"
+          (onHiding)="popup_hiding($event)">
+  <div class="tables">
+    <div class="columnl">
+      <div>
+        <dx-data-grid #notificationsgrid
+                      id="usrNotificationsGrid"
+                      [dataSource]="getUserNotificationsDS"
+                      [remoteOperations]="false"
+                      [showBorders]="true"
+                      [showRowLines]="true"
+                      height="665px"
+                      [rowAlternationEnabled]="false"
+                      [hoverStateEnabled]="true"
+                      (onRowPrepared)="onRowPrepared($event)"
+                      (onRowClick)="onRowClick($event)">
+          <dxo-column-chooser [enabled]="false"></dxo-column-chooser>
+          <dxo-filter-row [visible]="false"></dxo-filter-row>
+          <dxo-header-filter [visible]="false"></dxo-header-filter>
+          <dxo-selection mode="single"></dxo-selection>
+          <dxo-scrolling mode="standard" showScrollbar="onHower" [useNative]="true"></dxo-scrolling>
+          <dxo-export [enabled]="false"></dxo-export>
+          <dxo-paging [pageSize]="50"></dxo-paging>
+          <dxo-editing [allowAdding]="false"
+                       [allowUpdating]="false"
+                       [allowDeleting]="true"
+                       mode="row">
+          </dxo-editing>
+          <dxi-column dataField="Id" [visible]="false"></dxi-column>
+          <dxi-column dataField="Subject" [visible]="false"></dxi-column>
+          <dxi-column dataField="Addressed" [visible]="true"></dxi-column>
+          <dxi-column dataField="Status" [visible]="false"></dxi-column>
+          <dxi-column dataField="Message" [visible]="false"></dxi-column>
+          <dxi-column dataField="Date" [visible]="true" dataType="date"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+    <div class="columnr">
+      <div class="message">
+
+        <div class="table">
+          <div>
+            <div class="header-footer">
+              <div>{{selectedNotification.Header}}</div>
+            </div>
+          </div>
+          <div>
+            <div class="subject">
+              <div>{{selectedNotification.Subject}}</div>
+            </div>
+          </div>
+          <div>
+            <div class="body">
+              <div [innerHTML]="selectedNotification.Message">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</dx-popup>

@@ -1,10 +1,16 @@
-import { Component, NgModule, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, NgModule, Input, Output, EventEmitter, enableProdMode, QueryList, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AuthService, IUser } from '../../services';
+import { ScreenService, AuthService, IUser } from '../../services';
 import { UserPanelModule } from '../user-panel/user-panel.component';
-import { DxButtonModule } from 'devextreme-angular/ui/button';
+import { DxButtonComponent, DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
+import { DxDropDownButtonModule, DxPopupModule, DxTemplateModule, DxDataGridModule, DxTextAreaModule, DxSelectBoxModule } from 'devextreme-angular';
+import { formatMessage, loadMessages, locale } from 'devextreme/localization';
+import * as AspNetData from 'devextreme-aspnet-data-nojquery';
+import { Service } from './header.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { NotificationScreenModule } from '../../../shared/components/notification-screen/notification-screen.component'
 
 import { Router } from '@angular/router';
 @Component({
@@ -13,7 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent{
   @Output()
   menuToggle = new EventEmitter<boolean>();
 
@@ -32,13 +38,22 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/profile']);
     }
   },
+    {
+      text: 'Notification',
+      icon: 'email',
+      onClick: () => {
+        this.notificationsPopup = true;
+      }
+    },
   {
     text: 'Logout',
     icon: 'runner',
     onClick: () => {
       this.authService.logOut();
     }
-  }];
+    }];
+
+  notificationsPopup = false;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -49,6 +64,10 @@ export class HeaderComponent implements OnInit {
   toggleMenu = () => {
     this.menuToggle.emit();
   }
+
+  onHiding(e: any) {
+    this.notificationsPopup = e;
+  }
 }
 
 @NgModule({
@@ -56,9 +75,10 @@ export class HeaderComponent implements OnInit {
     CommonModule,
     DxButtonModule,
     UserPanelModule,
-    DxToolbarModule
+    DxToolbarModule,
+    NotificationScreenModule
   ],
-  declarations: [ HeaderComponent ],
-  exports: [ HeaderComponent ]
+  declarations: [HeaderComponent],
+  exports: [HeaderComponent]
 })
 export class HeaderModule { }
