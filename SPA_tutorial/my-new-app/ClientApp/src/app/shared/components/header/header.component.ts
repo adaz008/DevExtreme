@@ -16,10 +16,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  providers: [Service]
 })
 
-export class HeaderComponent{
+export class HeaderComponent {
   @Output()
   menuToggle = new EventEmitter<boolean>();
 
@@ -31,52 +32,126 @@ export class HeaderComponent{
 
   user: IUser | null = { email: '' };
 
-  userMenuItems = [{
-    text: 'Profile',
-    icon: 'user',
-    onClick: () => {
-      this.router.navigate(['/profile']);
-    }
-  },
-    {
-      text: 'Notification',
-      icon: 'email',
-      onClick: () => {
-        this.notificationsPopup = true;
-      }
-    },
-  {
-    text: 'Logout',
-    icon: 'runner',
-    onClick: () => {
-      this.authService.logOut();
-    }
-    }];
+  profileSettings: any;
+  newMessage!: number;
+  time: any;
+  image!: string;
+  AvatarLink!: string;
+
+
+  //userMenuItems = [{
+  //  text: 'Profile',
+  //  icon: 'user',
+  //  onClick: () => {
+  //    this.router.navigate(['/profile']);
+  //  }
+  //},
+  //  {
+  //    text: 'Notification',
+  //    icon: 'email',
+  //    badge: 3,
+  //    onClick: () => {
+  //      this.notificationsPopup = true;
+  //    }
+  //  },
+  //{
+  //  text: 'Logout',
+  //  icon: 'runner',
+  //  onClick: () => {
+  //    this.authService.logOut();
+  //  }
+  //  }];
 
   notificationsPopup = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private service: Service, private router: Router) {
+    //this.image = sessionStorage.getItem('avatarlink') == null ? "OIP.jpg" : sessionStorage.getItem('avatarlink');
+    //this.AvatarLink = document.getElementsByTagName('base')[0].href + 'images/avatars/' + this.image;
+
+    setInterval(() => {
+      this.updateButton();
+    }, 30000);
+
+    setInterval(() => {
+      this.time = new Date();
+    }, 1000);
+  }
+
+  updateButton() {
+    this.service.hasUnreadMessage()
+      .subscribe((res: any) => {
+        this.newMessage = res.data.length;
+
+        this.profileSettings = [
+          { name: 'Profile', icon: 'user' },
+          { name: 'Notifications', icon: 'message', badge: `${this.newMessage}` },
+          { name: 'Logout', icon: 'runner' },
+        ];
+      });
+  }
 
   ngOnInit() {
     this.authService.getUser().then((e) => this.user = e.data);
+    this.updateButton();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.time);
   }
 
   toggleMenu = () => {
     this.menuToggle.emit();
   }
 
+  //onHiding(e: any) {
+  //  this.notificationsPopup = e;
+  //}
+
   onHiding(e: any) {
+    this.service.hasUnreadMessage()
+      .subscribe((res: any) => {
+        this.newMessage = res.data.length;
+        this.profileSettings = [
+          { name: 'Profile', icon: 'user' },
+          { name: 'Notifications', icon: 'message', badge: `${this.newMessage}` },
+          { name: 'Logout', icon: 'runner' },
+        ];
+      });
     this.notificationsPopup = e;
   }
+
+  onDropdownItemClick(e: any) {
+    if (e.itemData.name == 'Logout') {
+      this.authService.logOut();
+    }
+    else if (e.itemData.name == 'Notifications') {
+      this.notificationsPopup = true;
+    }
+    else if (e.itemData.name == 'Profile') {
+      this.router.navigate(['/profile']);
+    }
+  }
+
+  toggle() {
+
+  }
+
 }
 
 @NgModule({
   imports: [
     CommonModule,
     DxButtonModule,
+    DxPopupModule,
     UserPanelModule,
     DxToolbarModule,
-    NotificationScreenModule
+    DxDropDownButtonModule,
+    DxDataGridModule,
+    BrowserModule,
+    DxTemplateModule,
+    DxTextAreaModule,
+    NotificationScreenModule,
+    DxSelectBoxModule
   ],
   declarations: [HeaderComponent],
   exports: [HeaderComponent]

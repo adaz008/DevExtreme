@@ -22,22 +22,3 @@ export class Service {
     }
   }
 }
-
-//getLSWMUser(org: string) {
-//  return {
-//    store: AspNetData.createStore({
-//      key: 'Id',
-//      loadUrl: url + 'api/LSWMUsers/GetNoRoot',
-//      insertUrl: url + 'api/LSWMUsers/Post',
-//      updateUrl: url + 'api/LSWMUsers/Put',
-//      deleteUrl: url + 'api/LSWMUsers/Delete',
-//      loadParams: { org: org },
-//      onBeforeSend(method, ajaxOptions) {
-//        ajaxOptions.xhrFields = { withCredentials: true };
-//      },
-//      errorHandler(e) {
-//        e.message = "Username and Email must be unique";
-//      }
-//    })
-//  };
-//}

@@ -5,33 +5,44 @@
               widget="dxButton"
               cssClass="menu-button"
               [options]="{
-        icon: 'menu',
-        stylingMode: 'text',
-        onClick: toggleMenu
-      }">
+                icon: 'menu',
+                stylingMode: 'text',
+                onClick: toggleMenu
+            }">
     </dxi-item>
+
     <dxi-item location="before"
               cssClass="header-title"
               *ngIf="title"
               [text]="title">
     </dxi-item>
+
     <dxi-item location="after"
               locateInMenu="auto"
               menuItemTemplate="menuItem">
-      <div *dxTemplate="let data of 'item'">
-        <dx-button class="user-button authorization"
-                   width="210px"
-                   height="100%"
-                   stylingMode="text">
-          <div *dxTemplate="let data of 'content'">
-            <app-user-panel [user]="user" [menuItems]="userMenuItems" menuMode="context"></app-user-panel>
+      <div *dxTemplate="let data of 'item'" class="dropdown-style">
+
+        <div class="user-info">
+          <div style="margin-right: 10px">
+            <p>{{time | date:'mediumTime'}}</p>
           </div>
-        </dx-button>
+          <div>
+            <dx-drop-down-button [useSelectMode]="false"
+                                 icon="menu"
+                                 [items]="profileSettings"
+                                 displayExpr="name"
+                                 style="margin-right: 1rem"
+                                 keyExpr="id"
+                                 [dropDownOptions]="{ width: 'auto', margin: '-10rem' }"
+                                 [showArrowIcon]="false"
+                                 stylingMode="text"
+                                 (onItemClick)="onDropdownItemClick($event)">
+            </dx-drop-down-button>
+          </div>
+        </div>
+
       </div>
     </dxi-item>
-    <div *dxTemplate="let data of 'menuItem'">
-      <app-user-panel [user]="user" [menuItems]="userMenuItems" menuMode="list"></app-user-panel>
-    </div>
   </dx-toolbar>
 </header>
 

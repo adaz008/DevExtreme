@@ -29,7 +29,7 @@ namespace my_new_app.Controllers
             var notifications = _context.notifications.Select(i => new {
                 i.Id,
                 i.Subject,
-                i.Addressed,
+                i.Sender,
                 i.Message,
                 i.Date,
                 i.Status
@@ -50,7 +50,7 @@ namespace my_new_app.Controllers
             var notifications = _context.notifications.Select(i => new {
                 i.Id,
                 i.Subject,
-                i.Addressed,
+                i.Sender,
                 i.Message,
                 i.Date,
                 i.Status
@@ -127,7 +127,7 @@ namespace my_new_app.Controllers
         private void PopulateModel(Notification model, IDictionary values) {
             string ID = nameof(Notification.Id);
             string SUBJECT = nameof(Notification.Subject);
-            string ADDRESSED = nameof(Notification.Addressed);
+            string ADDRESSED = nameof(Notification.Sender);
             string MESSAGE = nameof(Notification.Message);
             string DATE = nameof(Notification.Date);
             string STATUS = nameof(Notification.Status);
@@ -141,7 +141,7 @@ namespace my_new_app.Controllers
             }
 
             if(values.Contains(ADDRESSED)) {
-                model.Addressed = Convert.ToString(values[ADDRESSED]);
+                model.Sender = Convert.ToString(values[ADDRESSED]);
             }
 
             if(values.Contains(MESSAGE)) {

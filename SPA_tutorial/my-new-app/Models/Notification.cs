@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public string? Subject { get; set; }
 
-        public string? Addressed { get; set; }
+        public string? Sender { get; set; }
 
         public string? Message { get; set; }
         public DateTime Date { get; set; }

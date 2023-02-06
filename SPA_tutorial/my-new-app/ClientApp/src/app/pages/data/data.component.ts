@@ -15,4 +15,5 @@ export class DataComponent {
   constructor(private service: Service) {
     this.dataSource = this.service.getWeatherDatasource();
   }
+
 }
