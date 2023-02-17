@@ -21,4 +21,16 @@ export class Service {
       })
     }
   }
+
+  postNotifications() {
+    return {
+      store: AspNetData.createStore({
+        key: 'Id',        
+        insertUrl: '/api/Notifications/Post',
+        onBeforeSend(method, ajaxOptions) {
+          ajaxOptions.xhrFields = { withCredentials: true };
+        }
+      })
+    }
+  }
 }

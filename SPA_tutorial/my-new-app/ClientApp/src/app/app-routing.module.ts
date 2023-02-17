@@ -5,7 +5,7 @@ import { AuthGuardService } from './shared/services';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
-import { DxDataGridModule, DxFormModule, DxButtonModule } from 'devextreme-angular';
+import { DxDataGridModule, DxFormModule, DxButtonModule, DxPopupModule } from 'devextreme-angular';
 import { DataComponent } from './pages/data/data.component';
 
 const routes: Routes = [
@@ -56,7 +56,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true }), DxDataGridModule, DxFormModule, DxButtonModule],
+  imports: [RouterModule.forRoot(routes, { useHash: true }), DxDataGridModule, DxFormModule, DxButtonModule, DxPopupModule],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

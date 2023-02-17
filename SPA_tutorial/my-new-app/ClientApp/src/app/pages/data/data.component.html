@@ -1,4 +1,40 @@
-  <dx-data-grid class="dx-card wide-card"
+<dx-button class="btn"
+           text="Add Notification"
+           (onClick)="AddNotification()">
+</dx-button>
+
+<dx-popup title="Notification"
+          [(visible)]="notificationsPopup"
+          [height]="450"
+          [width]="1200"
+          [showTitle]="true"
+          [showCloseButton]="true"
+          [dragEnabled]="true"
+          [resizeEnabled]="true"
+          [closeOnOutsideClick]="true">
+
+  <dx-form id="form"
+           [(formData)]="popupItem"
+           [colCount]="2">
+    <dxi-item dataField="Subject" [colSpan]="1"></dxi-item>
+    <dxi-item dataField="Sender" [colSpan]="1"></dxi-item>
+    <dxi-item dataField="Message" [colSpan]="2"></dxi-item>
+    <dxi-item dataField="Date" editorType="dxDateBox" [colSpan]="1"></dxi-item>
+  </dx-form>
+
+  <dx-button [text]="'Cancel'"
+             class="btn-cancel"
+             (onClick)="cancelNotification()">
+  </dx-button>
+
+  <dx-button [text]="'Save'"
+             class="btn-save"
+             (onClick)="saveNotification()">
+  </dx-button>
+</dx-popup>
+
+
+<dx-data-grid class="dx-card wide-card"
               [dataSource]="dataSource"
               [showBorders]="true"
               [focusedRowEnabled]="true"
@@ -21,11 +57,11 @@
                [height]="400">
     </dxo-popup>
     <dxo-form>
-        <dxi-item dataField="City"></dxi-item>
-        <dxi-item dataField="Date"></dxi-item>
-        <dxi-item dataField="TemperatureC" ></dxi-item>
-        <dxi-item dataField="TemperatureF" [visible]="false"></dxi-item>
-        <dxi-item dataField="Summary"></dxi-item>
+      <dxi-item dataField="City"></dxi-item>
+      <dxi-item dataField="Date"></dxi-item>
+      <dxi-item dataField="TemperatureC"></dxi-item>
+      <dxi-item dataField="TemperatureF" [visible]="false"></dxi-item>
+      <dxi-item dataField="Summary"></dxi-item>
     </dxo-form>
 
   </dxo-editing>
@@ -37,5 +73,3 @@
   <dxi-column dataField="Summary" dataType="string" [visible]="true"></dxi-column>
 
 </dx-data-grid>
-
-

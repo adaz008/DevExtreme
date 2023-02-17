@@ -23,7 +23,7 @@
       <div *dxTemplate="let data of 'item'" class="dropdown-style">
 
         <div class="user-info">
-          <div style="margin-right: 10px">
+          <div style="margin-right: 40px">
             <p>{{time | date:'mediumTime'}}</p>
           </div>
           <div>
@@ -39,6 +39,9 @@
                                  (onItemClick)="onDropdownItemClick($event)">
             </dx-drop-down-button>
           </div>
+          <!--<div class="wrapper" *ngIf="newMessage>0">
+            <span class="badge">{{newMessage}}</span>
+          </div>-->
         </div>
 
       </div>

@@ -11,3 +11,24 @@ body {
   color: #FFF;
   background: #00F;
 }
+
+.btn-save {
+  float: right;
+  margin-right: 20px;
+}
+
+.btn-cancel {
+  float: right;
+  margin-right: 20px;
+}
+
+.btn-save:hover {
+  background: green;
+  color: #000;
+}
+.btn-cancel:hover {
+  background: red;
+  color: #000;
+}
+
+

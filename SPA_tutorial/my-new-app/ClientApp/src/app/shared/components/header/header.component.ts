@@ -35,7 +35,7 @@ export class HeaderComponent {
   profileSettings: any;
   newMessage!: number;
   time: any;
-  image!: string;
+  image!: any;
   AvatarLink!: string;
 
 
@@ -65,9 +65,6 @@ export class HeaderComponent {
   notificationsPopup = false;
 
   constructor(private authService: AuthService, private service: Service, private router: Router) {
-    //this.image = sessionStorage.getItem('avatarlink') == null ? "OIP.jpg" : sessionStorage.getItem('avatarlink');
-    //this.AvatarLink = document.getElementsByTagName('base')[0].href + 'images/avatars/' + this.image;
-
     setInterval(() => {
       this.updateButton();
     }, 30000);
@@ -80,6 +77,22 @@ export class HeaderComponent {
   updateButton() {
     this.service.hasUnreadMessage()
       .subscribe((res: any) => {
+
+        if (res.data.length > this.newMessage) {
+          if (!('Notification' in window)) {
+            console.log('Web Notification not supported');
+            return;
+          }
+
+          Notification.requestPermission(function (permission) {
+            var notification = new Notification("ELSW", {
+              body: 'Egy új üzenete érkezett', icon: 'http://i.stack.imgur.com/Jzjhz.png?s=48&g=1',
+              requireInteraction: true,
+              dir: 'auto'
+            });
+          });
+        }
+
         this.newMessage = res.data.length;
 
         this.profileSettings = [
@@ -103,9 +116,6 @@ export class HeaderComponent {
     this.menuToggle.emit();
   }
 
-  //onHiding(e: any) {
-  //  this.notificationsPopup = e;
-  //}
 
   onHiding(e: any) {
     this.service.hasUnreadMessage()

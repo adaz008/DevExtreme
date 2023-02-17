@@ -27,7 +27,7 @@ export class NotificationScreenComponent {
   menuToggle = new EventEmitter<boolean>();
 
   @Input()
-    visible: boolean = false;
+  visible: boolean = false;
 
   ngOnInit() {
 
@@ -99,6 +99,10 @@ export class NotificationScreenComponent {
     if ((changes["visible"] && changes["visible"].currentValue)) {
       this.dataGrid.instance.getDataSource().reload();
     }
+  }
+
+  onInitNewRow(e:any) {
+    e.data.Status = 'U';
   }
 }
 
